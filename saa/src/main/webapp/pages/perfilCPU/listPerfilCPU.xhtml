@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+	<ui:define name="content">
+
+		<h:form id="formListUsuario">
+			<h2>Listagem de Perfil CPU</h2>
+			<p:separator />
+			<br />
+			<h:panelGrid>
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+			</h:panelGrid>
+			<h:panelGrid columns="3" styleClass="panelgrid">
+				<p:outputLabel id="nomeLb" value="Nome: " />
+				<p:inputText id="nomeTx" value="#{listPerfilCPU.nome}" />
+				<p:commandButton value="Listar"
+					actionListener="#{listPerfilCPU.lista}" update="@form" />
+			</h:panelGrid>
+			<br />
+			<h:panelGrid columns="1" styleClass="panelgrid">
+				<p:commandButton value="Incluir" action="#{cadPerfilCPU.preparaSalvar}" ajax="false"/>
+			</h:panelGrid>
+			<br />
+			<p:dataTable id="tbPerfilCPU" var="perfilCPU"
+				value="#{listPerfilCPU.perfis}"
+				rendered="#{listPerfilCPU.perfis != null}"
+				emptyMessage="Nenhum resultado encontrado."
+				resizableColumns="true">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{perfilCPU.nome}" />
+				</p:column>
+				<p:column headerText="Processador">
+					<h:outputText value="#{perfilCPU.processador}" />
+				</p:column>
+				<p:column headerText="Memória" style="text-align: center">
+					<h:outputText value="#{perfilCPU.memoria}" />
+				</p:column>
+				<p:column headerText="HD" style="text-align: center">
+					<h:outputText value="#{perfilCPU.hd}" />
+				</p:column>
+				<p:column style="width: 55px; text-align: center" resizable="false"
+					headerText="Atualizar">
+					<p:commandButton icon="ui-icon-pencil" ajax="false"
+						title="Atualizar"
+						action="#{atualizaPerfilCPU.preparaAtualizar(perfilCPU}" />
+				</p:column>
+				<p:column id="clExcluir" style="width: 43px; text-align: center" resizable="false"
+					headerText="Excluir">
+					<p:commandButton id="btExcluir" icon="ui-icon-closethick"
+						title="Excluir" actionListener="#{listPerfilCPU.excluir(perfilCPU)}"
+						update="tbPerfilCPU"
+						onclick="if (!confirm('Confirma exclusão do perfil?')) return false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
