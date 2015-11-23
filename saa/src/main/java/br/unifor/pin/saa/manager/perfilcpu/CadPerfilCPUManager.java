@@ -24,7 +24,7 @@ public class CadPerfilCPUManager {
 	private String memoria;
 	private String hd;
 	
-	public String salvar(){ System.out.println("aee");
+	public String salvar(){ 
 		PerfilCPU novoPerfilCPU = new PerfilCPU();
 		novoPerfilCPU.setNome(nome);
 		novoPerfilCPU.setProcessador(processador);

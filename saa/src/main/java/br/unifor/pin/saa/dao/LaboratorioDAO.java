@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.unifor.pin.saa.entity.Laboratorio;
+import br.unifor.pin.saa.entity.Software;
 
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
@@ -26,28 +27,34 @@ public class LaboratorioDAO {
 		session = entityManager.unwrap(Session.class);
 	}
 	
-	public void salva(Laboratorio lab){
+	public void salvar(Laboratorio lab){
 		entityManager.persist(lab);
 	}
 	
-	public void update(Laboratorio lab){
+	public void atualizar(Laboratorio lab){
 		entityManager.merge(lab);
 	}
 	
-	public void delete(Integer id){
-		entityManager.remove(findById(id));
+	public void excluir(Integer id){
+		entityManager.remove(buscarPorId(id));
 	}
 	
-	public Laboratorio findById(Integer id){
+	public Laboratorio buscarPorId(Integer id){
 		return (Laboratorio)entityManager.find(Laboratorio.class, id);
 	}
 	
-	public List<Laboratorio> findByName(String nome){
+	public List<Laboratorio> buscarPorNome(String nome){
 		getSession();
 		Criteria criteria = session.createCriteria(Laboratorio.class);
 		criteria.add(Restrictions.like("nome", nome));
 		
 		return criteria.list(); 
+	}
+	
+	public List<Laboratorio> listaTodos(){
+		getSession();
+		Criteria criteria = session.createCriteria(Laboratorio.class);
+		return criteria.list();
 	}
 
 }

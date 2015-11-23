@@ -43,7 +43,7 @@ public class LaboratorioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		Assert.assertNotNull("Verifica se id está nulo.", lab.getId());
 		
@@ -63,12 +63,12 @@ public class LaboratorioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		lab.setNome("K09");
-		labDao.update(lab);
+		labDao.atualizar(lab);
 		
-		Laboratorio lab2 = labDao.findById(lab.getId());
+		Laboratorio lab2 = labDao.buscarPorId(lab.getId());
 		Assert.assertNotNull("Testa se achou.", lab2);
 		Assert.assertEquals("Verifica se tem mesmo nome.", lab2.getNome(), "K09");
 		
@@ -88,11 +88,11 @@ public class LaboratorioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
-		labDao.delete(lab.getId());
+		labDao.excluir(lab.getId());
 		
-		Laboratorio lab2 = labDao.findById(lab.getId());
+		Laboratorio lab2 = labDao.buscarPorId(lab.getId());
 		
 		Assert.assertNull("Ve se esta trazendo lab.", lab2);
 	}
@@ -111,8 +111,8 @@ public class LaboratorioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
-		Laboratorio lab2 = labDao.findById(lab.getId());
+		labDao.salvar(lab);
+		Laboratorio lab2 = labDao.buscarPorId(lab.getId());
 		
 		Assert.assertNotNull("Ve se esta trazendo lab.", lab2);
 	}
@@ -131,9 +131,9 @@ public class LaboratorioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
-		List<Laboratorio> labs = labDao.findByName(lab.getNome());
+		List<Laboratorio> labs = labDao.buscarPorNome(lab.getNome());
 		Assert.assertNotNull("Verfica se esta nulo.", labs);
 		Assert.assertFalse("Esta vazio.", labs.isEmpty());
 		Assert.assertTrue("Verifica se é o mesmo.", labs.contains(lab));
@@ -158,10 +158,10 @@ public class LaboratorioDAOTest {
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
 		lab.adicionaSoftware(software);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
-		Laboratorio teste = labDao.findById(lab.getId());
+		Laboratorio teste = labDao.buscarPorId(lab.getId());
 		
 		Assert.assertNotNull("encontrou objeto.", teste);
 		Assert.assertFalse("software foi vinculado.", teste.getSoftwares().isEmpty());

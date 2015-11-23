@@ -33,8 +33,8 @@ public class CalendarioDAOTest {
 	private PeriodoDAO periodoDao;
 	@Autowired
 	private UsuarioDAO usuarioDao;
-	@Autowired
-	private AlocacaoDAO alocacaoDao;
+//	@Autowired
+//	private AlocacaoDAO alocacaoDao;
 	@Autowired
 	private PerfilCPUDAO perfilCpuDao;
 	
@@ -57,7 +57,7 @@ public class CalendarioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -89,7 +89,7 @@ public class CalendarioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -129,7 +129,7 @@ public class CalendarioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -166,7 +166,7 @@ public class CalendarioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -224,7 +224,7 @@ public class CalendarioDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -241,7 +241,7 @@ public class CalendarioDAOTest {
 		calendario2.setPeriodo(periodo);
 		calendarioDao.salva(calendario);
 		
-		Laboratorio lab2 = labDao.findById(lab.getId());
+		Laboratorio lab2 = labDao.buscarPorId(lab.getId());
 		
 		Assert.assertNotNull("Objeto não deve está nulo.", lab2);
 		Assert.assertNotNull("propriedade não deve está nula.", lab2.getCalendarios());

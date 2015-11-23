@@ -79,7 +79,7 @@ public class AlocacaoDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();
@@ -124,7 +124,7 @@ public class AlocacaoDAOTest {
 		lab.setTecnico("Victor");
 		lab.setPerfil_cpu(perfil);
 		lab.setQuantidade_cpus(20);
-		labDao.salva(lab);
+		labDao.salvar(lab);
 		
 		
 		Calendario calendario = new Calendario();

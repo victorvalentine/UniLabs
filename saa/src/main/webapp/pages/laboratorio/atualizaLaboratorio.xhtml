@@ -6,46 +6,46 @@
 	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
 	<ui:define name="content">
 
-		<h:form id="formAtualizaUsuario">
-			<h2>Atualização de Perfil de CPU</h2>
+		<h:form id="formAtualizaLaboratorio">
+			<h2>Atualização de Laboratório</h2>
 			<p:separator />
 			<br />
 			<h:panelGrid id="gridUser" columns="4" styleClass="panelgrid">
-				
+			
 				<p:outputLabel value="Nome: " />
 				<font color="red">*</font>
-				<p:inputText id="nome" value="#{atualizaPerfilCPU.perfilCPUSelecionado.nome}" required="true"
+				<p:inputText id="nome" value="#{atualizaLaboratorio.laboratorioSelecionado.nome}" required="true"
 					requiredMessage="Campo Obrigatório" />
 				<p:message for="nome" />
+				
+				<p:outputLabel value="Quant. de CPU: " />
+				<font color="red">*</font>
+				<p:inputText id="quantidade_cpus" value="#{atualizaLaboratorio.laboratorioSelecionado.quantidade_cpus}" required="true"
+					requiredMessage="Campo Obrigatório" />
+				<p:message for="quantidade_cpus" />
+				
+				<p:outputLabel value="Técnico: " />
+				<font color="red">*</font>
+				<p:inputText id="tecnico" value="#{atualizaLaboratorio.laboratorioSelecionado.tecnico}" required="true"
+					requiredMessage="Campo Obrigatório" />
+				<p:message for="tecnico" />
+				
+				<p:outputLabel value="Perfil das CPUs: " />
+				<font color="red">*</font>
+				<p:inputText id="perfil_cpu" value="#{atualizaLaboratorio.laboratorioSelecionado.perfil_cpu}" required="true"
+					requiredMessage="Campo Obrigatório" />
+				<p:message for="perfil_cpu" />
 
-				<p:outputLabel value="Processador: " />
-				<font color="red">*</font>
-				<p:inputText id="processador" value="#{atualizaPerfilCPU.perfilCPUSelecionado.processador}" required="true"
-					requiredMessage="Campo Obrigatório" />
-				<p:message for="processador" />
-				
-				<p:outputLabel value="Memória: " />
-				<font color="red">*</font>
-				<p:inputText id="memoria" value="#{atualizaPerfilCPU.perfilCPUSelecionado.memoria}" required="true"
-					requiredMessage="Campo Obrigatório" />
-				<p:message for="memoria" />
-				
-				<p:outputLabel value="HD: " />
-				<font color="red">*</font>
-				<p:inputText id="hd" value="#{atualizaPerfilCPU.perfilCPUSelecionado.hd}" required="true"
-					requiredMessage="Campo Obrigatório" />
-				<p:message for="hd" />
-			
 			</h:panelGrid>
 			<br />
 			<h:panelGrid columns="3" styleClass="panelgrid">
 				<p:commandButton value="Voltar"
-					action="#{listPerfilCPU.preparaListar}" ajax="false"
+					action="#{listLaboratorio.preparaListar}" ajax="false"
 					immediate="true" />
-				<p:commandButton value="Atualizar" action="#{atualizaPerfilCPU.atualizar}"
+				<p:commandButton value="Atualizar" action="#{atualizaLaboratorio.atualizar}"
 					ajax="false" />
 				<p:commandButton value="Limpar"
-					actionListener="#{atualizaPerfilCPU.limparDados}" update="@form"
+					actionListener="#{atualizaLaboratorio.limparDados}" update="@form"
 					type="reset" />
 			</h:panelGrid>
 		</h:form>

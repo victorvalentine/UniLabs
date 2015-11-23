@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+	<ui:define name="content">
+
+		<h:form id="formListLaboratorio">
+			<h2>Listagem dos Laboratórios</h2>
+			<p:separator />
+			<br />
+			<h:panelGrid>
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+			</h:panelGrid>
+			<h:panelGrid columns="3" styleClass="panelgrid">
+				<p:outputLabel id="nomeLb" value="Nome: " />
+				<p:inputText id="nomeTx" value="#{listLaboratorio.nome}" />
+				<p:commandButton value="Listar"
+					actionListener="#{listLaboratorio.listaTodos}" update="@form" />
+			</h:panelGrid>
+			<br />
+			<h:panelGrid columns="1" styleClass="panelgrid">
+				<p:commandButton value="Incluir" action="#{cadLaboratorio.preparaSalvar}" ajax="false"/>
+			</h:panelGrid>
+			<br />
+			<p:dataTable id="tbLaboratorio" var="laboratorio"
+				value="#{listLaboratorio.laboratorio}"
+				rendered="#{listLaboratorio.laboratorio != null}"
+				emptyMessage="Nenhum resultado encontrado."
+				resizableColumns="true">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{laboratorio.nome}" />
+				</p:column>
+				<p:column headerText="Quant. de CPUs">
+					<h:outputText value="#laboratorio.quantidade_cpus}" />
+				</p:column>
+				<p:column headerText="Técnico" style="text-align: center">
+					<h:outputText value="#{laboratorio.tecnico}" />
+				</p:column>
+				<p:column headerText="Perfil das CPUs" style="text-align: center">
+					<h:outputText value="#{laboratorio.perfil_cpu}" />
+				</p:column>
+				
+				<p:column style="width: 55px; text-align: center" resizable="false"
+					headerText="Atualizar">
+					<p:commandButton icon="ui-icon-pencil" ajax="false"
+						title="Atualizar"
+						action="#{atualizaLaboratorio.preparaAtualizar(laboratorio)}" />
+				</p:column>
+				
+				<p:column id="clExcluir" style="width: 43px; text-align: center" resizable="false"
+					headerText="Excluir">
+					<p:commandButton id="btExcluir" icon="ui-icon-closethick"
+						title="Excluir" actionListener="#{listLaboratorio.excluir(laboratorio)}"
+						update="tbLaboratorio"
+						onclick="if (!confirm('Confirma exclusão do laboratório?')) return false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
